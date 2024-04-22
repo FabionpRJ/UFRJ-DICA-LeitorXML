@@ -3,8 +3,8 @@ import xml.etree.ElementTree as ET
 tree = ET.parse("lesson.xml")
 root = tree.getroot()
 
-for child in root:
-    print(child.tag, child.attrib,child.text,child.tail)
+#for child in root:
+    #print(child.tag, child.attrib,child.text,child.tail)
 
 print("\n")
 
@@ -23,5 +23,5 @@ for neighbor in root.iter('lesson'):
                             for child_6 in child_5:
                                 #print(child_6.tag,child_6.attrib,child_6.text)
                                 for child_7 in child_6:
-                                    print(child_7.tag,child_7.attrib,child_7.text)
+                                    #print(child_7.tag,child_7.attrib,child_7.text)
                                     #...

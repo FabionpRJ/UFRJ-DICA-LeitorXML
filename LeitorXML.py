@@ -66,18 +66,20 @@ class LeitorXML:
         for lesson in self.root.iter('lesson'):
             for pages in lesson.iter('pages'):
                 for page in pages:
-                    for answer in page.iter('answer'):
-                        for attempt in self.root.iter('attempt'):
-                            dados_tentativas.append({
-                                'id': attempt.attrib.get('id'),
-                                'user_id': attempt.findtext('userid'),
-                                'page_id': page.attrib.get('id'),
-                                'answer_id': answer.attrib.get('id'),
-                                'retry': attempt.findtext('retry'),
-                                'correct': attempt.findtext('correct'),
-                                'score': answer.findtext('score'),
-                                'grade': answer.findtext('grade'),
-                                'useranswer': attempt.findtext('useranswer'),
-                                'timeseen': attempt.findtext('timeseen')
-                            })
+                    for answers in page.iter('answers'):
+                        for answer in answers:
+                            for attempts in answer:
+                                for attempt in attempts:
+                                    dados_tentativas.append({
+                                        'id': attempt.attrib.get('id'),
+                                        'user_id': attempt.findtext('userid'),
+                                        'page_id': page.attrib.get('id'),
+                                        'answer_id': answer.attrib.get('id'),
+                                        'retry': attempt.findtext('retry'),
+                                        'correct': attempt.findtext('correct'),
+                                        'score': answer.findtext('score'),
+                                        'grade': answer.findtext('grade'),
+                                        'useranswer': attempt.findtext('useranswer'),
+                                        'timeseen': attempt.findtext('timeseen')
+                                    })
         return pd.DataFrame(dados_tentativas)
